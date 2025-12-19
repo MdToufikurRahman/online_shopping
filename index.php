@@ -234,7 +234,19 @@ session_start();
                             $color_index++;
                         ?>
                             <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a href="product.php?category=<?= $row->id ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
+                                <a href="<?php if( $row->id == 6){
+                                    echo "hair_care.php?id=$row->id";
+                                } elseif($row->id == 7){
+                                    echo "skin_care.php?id=$row->id";
+                                } elseif($row->id == 11){
+                                    echo "serrum.php?id=$row->id";
+                                } elseif($row->id == 8){
+                                    echo "lipstick.php?id=$row->id";
+                                } elseif($row->id == 10){
+                                    echo "blusher.php?id=$row->id";
+                                } else{
+                                    echo "face_skin.php?id=$row->id";
+                                } ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
                                     <?php
                                     /* Note: Your database table 'categories' doesn't have an 'image' column yet.
                            I am using a placeholder. You should add an 'image' column to your table
