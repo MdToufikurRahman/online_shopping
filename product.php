@@ -1,7 +1,26 @@
 <?php
 include_once('admin/includes/db_config.php');
 session_start();
-$id = $_REQUEST['id'];
+
+// Handle Add to Cart
+if (isset($_POST['add_to_cart'])) {
+    $product_id = (int)$_POST['product_id'];
+    $title      = $_POST['product_title'];
+    $price      = (float)$_POST['product_price'];
+    $image      = $_POST['product_image'];
+
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['qty']++;
+    } else {
+        $_SESSION['cart'][$product_id] = [
+            'id'    => $product_id,
+            'title' => $title,
+            'price' => $price,
+            'image' => $image,
+            'qty'   => 1
+        ];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -13,8 +32,7 @@ $id = $_REQUEST['id'];
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords"
-        content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon" />
+    <meta name="keywords" content="bootstrap, ecommerce, ecommerce html, beauty, cosmetic shop, beauty products, cosmetic, beauty shop, cosmetic store, shop, beauty store, spa, cosmetic, cosmetics, beauty salon" />
     <meta name="author" content="codecarnival" />
 
     <!-- Favicon -->
@@ -34,6 +52,7 @@ $id = $_REQUEST['id'];
     <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/plugins/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/plugins/fancybox.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/range-slider.css">
     <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
 
     <!-- Style CSS -->
@@ -47,24 +66,29 @@ $id = $_REQUEST['id'];
     <div class="wrapper">
 
         <!--== Start Header Wrapper ==-->
-        <header class="header-area sticky-header header-transparent">
+        <header class="header-area sticky-header">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-5 col-lg-2 col-xl-1">
+                    <div class="col-5 col-sm-6 col-lg-3">
                         <div class="header-logo">
                             <a href="index.php">
-                                <img class="logo-main" src="assets/images/logo.webp" width="95" height="68"
-                                    alt="Logo" />
+                                <img class="logo-main" src="assets/images/logo.webp" width="95" height="68" alt="Logo" />
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-xl-7 d-none d-lg-block">
-                        <div class="header-navigation ps-7">
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
-                                <li class="has-submenu"><a href="index.php">home</a></li>
+                                <li class="has-submenu"><a href="index.php">home</a>
+
+                                </li>
                                 <li><a href="about_us.php">about</a></li>
-                                <li class="has-submenu position-static"><a href="product.php">shop</a></li>
-                                <li class="has-submenu"><a href="blog.php">Blog</a></li>
+                                <li class="has-submenu position-static"><a href="product.php">shop</a>
+
+                                </li>
+                                <li class="has-submenu"><a href="blog.php">Blog</a>
+
+                                </li>
                                 <li class="has-submenu"><a href="account-login.php">Pages</a>
                                     <ul class="submenu-nav">
                                         <li><a href="account-login.php">My Account</a></li>
@@ -76,39 +100,31 @@ $id = $_REQUEST['id'];
                             </ul>
                         </div>
                     </div>
-                    <div class="col-7 col-lg-3 col-xl-4">
+                    <div class="col-7 col-sm-6 col-lg-3">
                         <div class="header-action justify-content-end">
-                            <button class="header-action-btn ms-0" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
+                            <button class="header-action-btn ms-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
                                 <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <rect class="icon-rect" width="30" height="30" fill="url(#pattern1)" />
                                         <defs>
-                                            <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
+                                            <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
                                                 <use xlink:href="#image0_504:11" transform="scale(0.0333333)" />
                                             </pattern>
-                                            <image id="image0_504:11" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABiUlEQVRIie2Wu04CQRSGP0G2EUtIbHwA8B3EQisLIcorEInx8hbEZ9DKy6toDI1oAgalNFpDoYWuxZzJjoTbmSXERP7kZDbZ859vdmb27MJcf0gBUAaugRbQk2gBV3IvmDa0BLwA4Zh4BorTACaAU6fwPXAI5IAliTxwBDScvJp4vWWhH0BlTLEEsC+5Fu6lkgNdV/gKDnxHCw2I9rSiNQNV8baBlMZYJtpTn71KAg9SY3dUYn9xezLPgG8P8BdwLteq5X7CzDbnAbXKS42WxtQVUzoGeFlqdEclxXrnhmhhkqR+8KuMqzHA1vumAddl3IwB3pLxVmOyr1NjwKQmURJ4lBp7GmOAafghpg1qdSDeDrCoNReJWmZB4dsAPsW7rYVa1Rx4FbOEw5TEPKmFvgMZX3DCgYeYNniMaQ5piTXghGhPLdTmZ33hYNpem98f/UHRwSxvhqhXx4anMA3/EmhiOlJPJnSBOb3uQcpOE65VhujPpAms/Bu4u+x3swRbeB24mTV4LgB+AFuLedkPkcmmAAAAAElFTkSuQmCC" />
+                                            <image id="image0_504:11" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABiUlEQVRIie2Wu04CQRSGP0G2EUtIbHwA8B3EQisLIcorEInx8hbEZ9DKy6toDI1oAgalNFpDoYWuxZzJjoTbmSXERP7kZDbZ859vdmb27MJcf0gBUAaugRbQk2gBV3IvmDa0BLwA4Zh4BorTACaAU6fwPXAI5IAliTxwBDScvJp4vWWhH0BlTLEEsC+5Fu6lkgNdV/gKDnxHCw2I9rSiNQNV8baBlMZYJtpTn71KAg9SY3dUYn9xezLPgG8P8BdwLteq5X7CzDbnAbXKS42WxtQVUzoGeFlqdEclxXrnhmhhkqR+8KuMqzHA1vumAddl3IwB3pLxVmOyr1NjwKQmURJ4lBp7GmOAafghpg1qdSDeDrCoNReJWmZB4dsAPsW7rYVa1Rx4FbOEw5TEPKmFvgMZX3DCgYeYNniMaQ5piTXghGhPLdTmZ33hYNpem98f/UHRwSxvhqhXx4anMA3/EmhiOlJPJnSBOb3uQcpOE65VhujPpAms/Bu4u+x3swRbeB24mTV4LgB+AFuLedkPkcmmAAAAAElFTkSuQmCC" />
                                         </defs>
                                     </svg>
                                 </span>
                             </button>
 
-                            <button class="header-action-btn" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasCart" aria-controls="AsideOffcanvasCart">
+                            <button class="header-action-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasCart" aria-controls="AsideOffcanvasCart">
                                 <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <rect class="icon-rect" width="30" height="30" fill="url(#pattern2)" />
                                         <defs>
-                                            <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
+                                            <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
                                                 <use xlink:href="#image0_504:9" transform="scale(0.0333333)" />
                                             </pattern>
-                                            <image id="image0_504:9" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABFUlEQVRIie2VMU7DMBSGvwAqawaYuAmKxCW4A1I5Qg4AA93KBbp1ZUVUlQJSVVbCDVhgzcTQdLEVx7WDQ2xLRfzSvzzb+d6zn2MYrkugBBYevuWsHKiFn2JBMwH8Bq6Aw1jgBwHOYwGlPgT4LDZ4I8BJDNiEppl034UEJ8DMAJ0DByHBACPgUYEugePQUKkUWAmnsaB/Ry/YO9aXCwlT72AdrqaWEohwBWxSwc8ReIVtYIr5bM5pXqO+Men7rozGlkVSv4lJj1WQfsbvXVkNVNk1eEK4ik9/yuwzAPhLh5iuU4jtftMDR4ZJJXChxTJ2H3zXGDgWc43/X2Wro8G81a8u2fXU2nXiLVAxvNIKuPGW/r/2SltF+a3Rkw4pmwAAAABJRU5ErkJggg==" />
+                                            <image id="image0_504:9" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABFUlEQVRIie2VMU7DMBSGvwAqawaYuAmKxCW4A1I5Qg4AA93KBbp1ZUVUlQJSVVbCDVhgzcTQdLEVx7WDQ2xLRfzSvzzb+d6zn2MYrkugBBYevuWsHKiFn2JBMwH8Bq6Aw1jgBwHOYwGlPgT4LDZ4I8BJDNiEppl034UEJ8DMAJ0DByHBACPgUYEugePQUKkUWAmnsaB/Ry/YO9aXCwlT72AdrqaWEohwBWxSwc8ReIVtYIr5bM5pXqO+Men7rozGlkVSv4lJj1WQfsbvXVkNVNk1eEK4ik9/yuwzAPhLh5iuU4jtftMDR4ZJJXChxTJ2H3zXGDgWc43/X2Wro8G81a8u2fXU2nXiLVAxvNIKuPGW/r/2SltF+a3Rkw4pmwAAAABJRU5ErkJggg==" />
                                         </defs>
                                     </svg>
                                 </span>
@@ -116,23 +132,19 @@ $id = $_REQUEST['id'];
 
                             <a class="header-action-btn" href="account-login.php">
                                 <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)" />
                                         <defs>
-                                            <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
+                                            <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
                                                 <use xlink:href="#image0_504:10" transform="scale(0.0333333)" />
                                             </pattern>
-                                            <image id="image0_504:10" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie3UMUoDYRDF8Z8psqUpLBRrBS+gx7ATD6E5iSjeQQ/gJUzEwmChnZZaKZiQ0ljsLkhQM5/5Agr74DX7DfOfgZ1Hoz+qAl30Marcx2H1thCtY4DJN76parKqmAH9DM+6eTcArX2QE3yVAO7lBA8TwMNIw6UgeJI46My+rWCjUQL0LVIUBd8lgEO1UfBZAvg8oXamCuWNRu64nRNMmUo/wReSXLXayoDoKc9miMvqW/ZNG2VRNLla2MYudrCFTvX2intlnl/gGu/zDraGYzyLZ/UTjrD6G2AHpxgnAKc9xgmWo9BNPM4BnPYDNiLg24zQ2oNpyFdZvRKZLlGhnvvKPzXXti/Yy7hEo3+iD9EHtgdqxQnwAAAAAElFTkSuQmCC" />
+                                            <image id="image0_504:10" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie3UMUoDYRDF8Z8psqUpLBRrBS+gx7ATD6E5iSjeQQ/gJUzEwmChnZZaKZiQ0ljsLkhQM5/5Agr74DX7DfOfgZ1Hoz+qAl30Marcx2H1thCtY4DJN76parKqmAH9DM+6eTcArX2QE3yVAO7lBA8TwMNIw6UgeJI46My+rWCjUQL0LVIUBd8lgEO1UfBZAvg8oXamCuWNRu64nRNMmUo/wReSXLXayoDoKc9miMvqW/ZNG2VRNLla2MYudrCFTvX2intlnl/gGu/zDraGYzyLZ/UTjrD6G2AHpxgnAKc9xgmWo9BNPM4BnPYDNiLg24zQ2oNpyFdZvRKZLlGhnvvKPzXXti/Yy7hEo3+iD9EHtgdqxQnwAAAAAElFTkSuQmCC" />
                                         </defs>
                                     </svg>
                                 </span>
                             </a>
 
-                            <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
+                            <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -146,9 +158,25 @@ $id = $_REQUEST['id'];
 
         <main class="main-content">
 
-            <!--== Start Hero Area Wrapper ==-->
-          
-            <!--== End Hero Area Wrapper ==-->
+            <!--== Start Page Header Area Wrapper ==-->
+            <section class="page-header-area pt-10 pb-9" data-bg-color="#FFF3DA">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="page-header-st3-content text-center text-md-start">
+                                <ol class="breadcrumb justify-content-center justify-content-md-start">
+                                    <li class="breadcrumb-item"><a class="text-dark" href="index.php">Home</a></li>
+                                    <li class="breadcrumb-item active text-dark" aria-current="page">Products</li>
+                                </ol>
+                                <h2 class="page-header-title">All Products</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!--== End Page Header Area Wrapper ==-->
+
 
             <!--== Start Product Category Area Wrapper ==-->
             <section class="section-space pb-0">
@@ -170,19 +198,19 @@ $id = $_REQUEST['id'];
                             $color_index++;
                         ?>
                             <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a href="<?php if( $row->id == 6){
-                                    echo "hair_care.php?id=$row->id";
-                                } elseif($row->id == 7){
-                                    echo "skin_care.php?id=$row->id";
-                                } elseif($row->id == 11){
-                                    echo "serrum.php?id=$row->id";
-                                } elseif($row->id == 8){
-                                    echo "lipstick.php?id=$row->id";
-                                } elseif($row->id == 10){
-                                    echo "blusher.php?id=$row->id";
-                                } else{
-                                    echo "face_skin.php?id=$row->id";
-                                } ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
+                                <a href="<?php if ($row->id == 6) {
+                                                echo "hair_care.php?id=$row->id";
+                                            } elseif ($row->id == 7) {
+                                                echo "skin_care.php?id=$row->id";
+                                            } elseif ($row->id == 11) {
+                                                echo "serrum.php?id=$row->id";
+                                            } elseif ($row->id == 8) {
+                                                echo "lipstick.php?id=$row->id";
+                                            } elseif ($row->id == 10) {
+                                                echo "blusher.php?id=$row->id";
+                                            } else {
+                                                echo "face_skin.php?id=$row->id";
+                                            } ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
                                     <?php
                                     /* Note: Your database table 'categories' doesn't have an 'image' column yet.
                            I am using a placeholder. You should add an 'image' column to your table
@@ -199,7 +227,6 @@ $id = $_REQUEST['id'];
             </section>
             <!--== End Product Category Area Wrapper ==-->
 
-            <!--== Start Product Area Wrapper ==-->
             <section class="section-space">
                 <div class="container">
                     <div class="row">
@@ -214,65 +241,72 @@ $id = $_REQUEST['id'];
 
                     <div class="row">
                         <?php
-                        $sql = "SELECT * FROM product WHERE category_id = '$id'";
+                        $sql = "
+SELECT 
+        p.id AS product_id,
+        p.name AS product_title,
+        p.price AS product_price,
+        p.description AS product_description,
+        pi.image_path
+    FROM products p
+    LEFT JOIN product_images pi 
+        ON pi.product_id = p.id 
+        AND pi.is_primary = 1
+    ORDER BY RAND() 
+";
 
                         $result = $db->query($sql);
 
                         while ($row = $result->fetch_assoc()):
-                        ?>
+                            $product_id    = (int)$row['product_id'];
+                            $product_title = htmlspecialchars($row['product_title']);
+                            $product_price = (float)$row['product_price'];
 
+                            $img_filename  = $row['image_path'];
+                            $product_image = !empty($img_filename)
+                                ? "admin/" . htmlspecialchars($img_filename)
+                                : "assets/images/shop/1.webp";
+                        ?>
                             <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                <div class='product-item'>
-                                    <div class='product-thumb'>
-                                        <a class='d-block' href='product-details.php?id=<?= $product_id ?>'>
-                                            <img src="admin/<?php echo $row['image_path'] ?>" width='370' height='450' alt=''>
+                                <div class="product-item">
+                                    <div class="product-thumb">
+                                        <a href="product-details.php?id=<?= $product_id ?>">
+                                            <img src="<?= $product_image ?>" width="370" height="450" alt="<?= $product_title ?>">
                                         </a>
-                                        <span class='flag-new'>new</span>
-                                        <div class='product-action'>
-                                            <button type='button' class='product-action-btn action-btn-quick-view' data-bs-toggle='modal' data-bs-target='#action-QuickViewModal'>
-                                                <i class='fa fa-expand'></i>
-                                            </button>
-                                            <button type='button' class='product-action-btn action-btn-cart' data-bs-toggle='modal' data-bs-target='#action-CartAddModal'>
+
+                                        <!-- ADD TO CART FORM -->
+                                        <form method="post" class="product-action">
+                                            <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                                            <input type="hidden" name="product_title" value="<?= $product_title ?>">
+                                            <input type="hidden" name="product_price" value="<?= $product_price ?>">
+                                            <input type="hidden" name="product_image" value="<?= $product_image ?>">
+
+                                            <button type="submit" name="add_to_cart" class="product-action-btn action-btn-cart">
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button type='button' class='product-action-btn action-btn-wishlist' data-bs-toggle='modal' data-bs-target='#action-WishlistModal'>
-                                                <i class='fa fa-heart-o'></i>
-                                            </button>
-                                        </div>
+                                        </form>
                                     </div>
-                                    <div class='product-info'>
-                                        <div class='product-rating'>
-                                            <div class='rating'>
-                                                <i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-half-o'></i>
-                                            </div>
-                                            <div class='reviews'>150 reviews</div>
-                                        </div>
-                                        <h4 class='title'><a href='product-details.php?id=<?= $product_id ?>'><?php echo $row['name'] ?></a></h4>
+
+                                    <div class="product-info">
+                                        <h4 class="title">
+                                            <a href="product-details.php?id=<?= $product_id ?>">
+                                                <?= $product_title ?>
+                                            </a>
+                                        </h4>
+
                                         <div class="prices">
-                                            <span class="price">$<?php echo $row['price'] ?></span>
-
-
-
-                                            <span class='price-old'>300.00</span>
+                                            <span class="price">$<?= number_format($product_price, 2) ?></span>
+                                            <span class="price-old">$300.00</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         <?php endwhile; ?>
                     </div>
 
 
-
-
-            <!--== Start Blog Area Wrapper ==-->
-          
-            <!--== End Blog Area Wrapper ==-->
-
-            <!--== Start News Letter Area Wrapper ==-->
-           
-            <!--== End News Letter Area Wrapper ==-->
-
+                </div>
+            </section>
         </main>
 
         <!--== Start Footer Area Wrapper ==-->
@@ -287,8 +321,7 @@ $id = $_REQUEST['id'];
                                     <a class="widget-logo" href="index.php">
                                         <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
                                     </a>
-                                    <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                        industry. Lorem Ipsum has been.</p>
+                                    <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
                                 </div>
                             </div>
                         </div>
@@ -311,12 +344,9 @@ $id = $_REQUEST['id'];
                             <div class="widget-item">
                                 <h4 class="widget-title">Social Info</h4>
                                 <div class="widget-social">
-                                    <a href="https://twitter.com/" target="_blank" rel="noopener"><i
-                                            class="fa fa-twitter"></i></a>
-                                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i
-                                            class="fa fa-facebook"></i></a>
-                                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i
-                                            class="fa fa-pinterest-p"></i></a>
+                                    <a href="https://twitter.com/" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
+                                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -329,8 +359,7 @@ $id = $_REQUEST['id'];
             <div class="footer-bottom">
                 <div class="container pt-0 pb-0">
                     <div class="footer-bottom-content">
-                        <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank"
-                                href="https://themeforest.net/user/codecarnival">Codecarnival.</a></p>
+                        <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://themeforest.net/user/codecarnival">Codecarnival.</a></p>
                     </div>
                 </div>
             </div>
@@ -355,8 +384,7 @@ $id = $_REQUEST['id'];
                             </div>
                             <div class="modal-action-product">
                                 <div class="thumb">
-                                    <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
-                                        height="320">
+                                    <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
                                 </div>
                                 <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
@@ -381,8 +409,7 @@ $id = $_REQUEST['id'];
                             </div>
                             <div class="modal-action-product">
                                 <div class="thumb">
-                                    <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
-                                        height="320">
+                                    <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466" height="320">
                                 </div>
                                 <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
@@ -394,12 +421,10 @@ $id = $_REQUEST['id'];
         <!--== End Product Quick Add Cart Modal ==-->
 
         <!--== Start Aside Search Form ==-->
-        <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch"
-            aria-labelledby="offcanvasTopLabel">
+        <aside class="aside-search-box-wrapper offcanvas offcanvas-top" tabindex="-1" id="AsideOffcanvasSearch" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header">
                 <h5 class="d-none" id="offcanvasTopLabel">Aside Search</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                        class="fa fa-close"></i></button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa fa-close"></i></button>
             </div>
             <div class="offcanvas-body">
                 <div class="container pt--0 pb--0">
@@ -410,8 +435,7 @@ $id = $_REQUEST['id'];
                         <form action="#" method="post">
                             <div class="aside-search-form position-relative">
                                 <label for="SearchInput" class="visually-hidden">Search</label>
-                                <input id="SearchInput" type="search" class="form-control"
-                                    placeholder="Search entire store…">
+                                <input id="SearchInput" type="search" class="form-control" placeholder="Search entire store…">
                                 <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
@@ -435,8 +459,7 @@ $id = $_REQUEST['id'];
                                     <div class="col-lg-6">
                                         <!--== Start Product Thumbnail Area ==-->
                                         <div class="product-single-thumb">
-                                            <img src="assets/images/shop/quick-view1.webp" width="544" height="560"
-                                                alt="Image-HasTech">
+                                            <img src="assets/images/shop/quick-view1.webp" width="544" height="560" alt="Image-HasTech">
                                         </div>
                                         <!--== End Product Thumbnail Area ==-->
                                     </div>
@@ -455,10 +478,7 @@ $id = $_REQUEST['id'];
                                                 </div>
                                                 <button type="button" class="product-review-show">150 reviews</button>
                                             </div>
-                                            <p class="mb-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                                Delectus, repellendus. Nam voluptate illo ut quia non sapiente provident
-                                                alias quos laborum incidunt, earum accusamus, natus. Vero pariatur ut
-                                                veniam sequi amet consectetur.</p>
+                                            <p class="mb-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, repellendus. Nam voluptate illo ut quia non sapiente provident alias quos laborum incidunt, earum accusamus, natus. Vero pariatur ut veniam sequi amet consectetur.</p>
                                             <div class="product-details-pro-qty">
                                                 <div class="pro-qty">
                                                     <input type="text" title="Quantity" value="01">
@@ -467,8 +487,7 @@ $id = $_REQUEST['id'];
                                             <div class="product-details-action">
                                                 <h4 class="price">$254.22</h4>
                                                 <div class="product-details-cart-wishlist">
-                                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                                        data-bs-target="#action-CartAddModal">Add to cart</button>
+                                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -484,7 +503,7 @@ $id = $_REQUEST['id'];
         <!--== End Product Quick View Modal ==-->
 
         <!--== Start Aside Cart ==-->
-        <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart"
+       <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart"
             aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h1 class="d-none" id="offcanvasRightLabel">Shopping Cart</h1>
@@ -492,38 +511,71 @@ $id = $_REQUEST['id'];
                         class="fa fa-chevron-right"></i></button>
             </div>
             <div class="offcanvas-body">
+
                 <ul class="aside-cart-product-list">
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.php">
-                            <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Leather Mens Slipper</span>
-                        </a>
-                        <span class="product-price">1 × £69.99</span>
-                    </li>
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.php">
-                            <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Quickiin Mens shoes</span>
-                        </a>
-                        <span class="product-price">1 × £20.00</span>
-                    </li>
+
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <?php $subtotal = 0; ?>
+
+                        <?php foreach ($_SESSION['cart'] as $item): ?>
+                            <?php
+                            $item_total = $item['price'] * $item['qty'];
+                            $subtotal  += $item_total;
+                            ?>
+                            <li class="aside-product-list-item">
+                                <!-- REMOVE ITEM -->
+                                <a href="remove-cart.php?id=<?= (int)$item['id'] ?>"
+                                    class="remove"
+                                    title="Remove item">×</a>
+
+                                <!-- PRODUCT LINK -->
+                                <a href="product-details.php?id=<?= (int)$item['id'] ?>">
+                                    <img src="<?= htmlspecialchars($item['image']) ?>"
+                                        width="68"
+                                        height="84"
+                                        alt="<?= htmlspecialchars($item['title']) ?>">
+                                    <span class="product-title">
+                                        <?= htmlspecialchars($item['title']) ?>
+                                    </span>
+                                </a>
+
+                                <!-- PRICE -->
+                                <span class="product-price">
+                                    <?= (int)$item['qty'] ?> × $
+                                    <?= number_format($item['price'], 2) ?>
+                                </span>
+                            </li>
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
+                        <li class="aside-product-list-item">
+                            <p style="text-align:center;">Your cart is empty</p>
+                        </li>
+                    <?php endif; ?>
+
                 </ul>
-                <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
+
+                <!-- SUBTOTAL -->
+                <p class="cart-total">
+                    <span>Subtotal:</span>
+                    <span class="amount">
+                        $<?= number_format($subtotal ?? 0, 2) ?>
+                    </span>
+                </p>
+
+                <!-- ACTION BUTTONS -->
                 <a class="btn-total" href="product-cart.php">View cart</a>
                 <a class="btn-total" href="product-checkout.php">Checkout</a>
+
             </div>
         </aside>
         <!--== End Aside Cart ==-->
 
         <!--== Start Aside Menu ==-->
-        <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
-            aria-labelledby="offcanvasExampleLabel">
+        <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
-                <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i
-                        class="fa fa-chevron-left"></i></button>
+                <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="fa fa-chevron-left"></i></button>
             </div>
             <div class="offcanvas-body">
                 <div id="offcanvasNav" class="offcanvas-menu-nav">
@@ -534,8 +586,7 @@ $id = $_REQUEST['id'];
                                 <li><a href="index-two.php">Home Two</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a>
-                        </li>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a></li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
                             <ul>
                                 <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
@@ -583,8 +634,7 @@ $id = $_REQUEST['id'];
                                 <li><a href="page-not-found.php">Page Not Found</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a>
-                        </li>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -605,6 +655,7 @@ $id = $_REQUEST['id'];
     <!-- Plugins JS -->
     <script src="./assets/js/plugins/swiper-bundle.min.js"></script>
     <script src="./assets/js/plugins/fancybox.min.js"></script>
+    <script src="./assets/js/plugins/range-slider.js"></script>
     <script src="./assets/js/plugins/jquery.nice-select.min.js"></script>
 
     <!-- Custom Main JS -->

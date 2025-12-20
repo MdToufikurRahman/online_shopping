@@ -1,6 +1,26 @@
 <?php
 include_once('admin/includes/db_config.php');
 session_start();
+
+// Handle Add to Cart
+if (isset($_POST['add_to_cart'])) {
+    $product_id = (int)$_POST['product_id'];
+    $title      = $_POST['product_title'];
+    $price      = (float)$_POST['product_price'];
+    $image      = $_POST['product_image'];
+
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id]['qty']++;
+    } else {
+        $_SESSION['cart'][$product_id] = [
+            'id'    => $product_id,
+            'title' => $title,
+            'price' => $price,
+            'image' => $image,
+            'qty'   => 1
+        ];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -46,101 +66,7 @@ session_start();
     <div class="wrapper">
 
         <!--== Start Header Wrapper ==-->
-        <header class="header-area sticky-header header-transparent">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-5 col-lg-2 col-xl-1">
-                        <div class="header-logo">
-                            <a href="index.html">
-                                <img class="logo-main" src="assets/images/logo.webp" width="95" height="68"
-                                    alt="Logo" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-7 col-xl-7 d-none d-lg-block">
-                        <div class="header-navigation ps-7">
-                            <ul class="main-nav justify-content-start">
-                                <li class="has-submenu"><a href="index.html">home</a></li>
-                                <li><a href="about-us.html">about</a></li>
-                                <li class="has-submenu position-static"><a href="product.html">shop</a></li>
-                                <li class="has-submenu"><a href="blog.html">Blog</a></li>
-                                <li class="has-submenu"><a href="account-login.html">Pages</a>
-                                    <ul class="submenu-nav">
-                                        <li><a href="account-login.html">My Account</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.html">Page Not Found</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-7 col-lg-3 col-xl-4">
-                        <div class="header-action justify-content-end">
-                            <button class="header-action-btn ms-0" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch">
-                                <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <rect class="icon-rect" width="30" height="30" fill="url(#pattern1)" />
-                                        <defs>
-                                            <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
-                                                <use xlink:href="#image0_504:11" transform="scale(0.0333333)" />
-                                            </pattern>
-                                            <image id="image0_504:11" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABiUlEQVRIie2Wu04CQRSGP0G2EUtIbHwA8B3EQisLIcorEInx8hbEZ9DKy6toDI1oAgalNFpDoYWuxZzJjoTbmSXERP7kZDbZ859vdmb27MJcf0gBUAaugRbQk2gBV3IvmDa0BLwA4Zh4BorTACaAU6fwPXAI5IAliTxwBDScvJp4vWWhH0BlTLEEsC+5Fu6lkgNdV/gKDnxHCw2I9rSiNQNV8baBlMZYJtpTn71KAg9SY3dUYn9xezLPgG8P8BdwLteq5X7CzDbnAbXKS42WxtQVUzoGeFlqdEclxXrnhmhhkqR+8KuMqzHA1vumAddl3IwB3pLxVmOyr1NjwKQmURJ4lBp7GmOAafghpg1qdSDeDrCoNReJWmZB4dsAPsW7rYVa1Rx4FbOEw5TEPKmFvgMZX3DCgYeYNniMaQ5piTXghGhPLdTmZ33hYNpem98f/UHRwSxvhqhXx4anMA3/EmhiOlJPJnSBOb3uQcpOE65VhujPpAms/Bu4u+x3swRbeB24mTV4LgB+AFuLedkPkcmmAAAAAElFTkSuQmCC" />
-                                        </defs>
-                                    </svg>
-                                </span>
-                            </button>
-
-                            <button class="header-action-btn" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasCart" aria-controls="AsideOffcanvasCart">
-                                <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <rect class="icon-rect" width="30" height="30" fill="url(#pattern2)" />
-                                        <defs>
-                                            <pattern id="pattern2" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
-                                                <use xlink:href="#image0_504:9" transform="scale(0.0333333)" />
-                                            </pattern>
-                                            <image id="image0_504:9" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABFUlEQVRIie2VMU7DMBSGvwAqawaYuAmKxCW4A1I5Qg4AA93KBbp1ZUVUlQJSVVbCDVhgzcTQdLEVx7WDQ2xLRfzSvzzb+d6zn2MYrkugBBYevuWsHKiFn2JBMwH8Bq6Aw1jgBwHOYwGlPgT4LDZ4I8BJDNiEppl034UEJ8DMAJ0DByHBACPgUYEugePQUKkUWAmnsaB/Ry/YO9aXCwlT72AdrqaWEohwBWxSwc8ReIVtYIr5bM5pXqO+Men7rozGlkVSv4lJj1WQfsbvXVkNVNk1eEK4ik9/yuwzAPhLh5iuU4jtftMDR4ZJJXChxTJ2H3zXGDgWc43/X2Wro8G81a8u2fXU2nXiLVAxvNIKuPGW/r/2SltF+a3Rkw4pmwAAAABJRU5ErkJggg==" />
-                                        </defs>
-                                    </svg>
-                                </span>
-                            </button>
-
-                            <a class="header-action-btn" href="account-login.html">
-                                <span class="icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <rect class="icon-rect" width="30" height="30" fill="url(#pattern3)" />
-                                        <defs>
-                                            <pattern id="pattern3" patternContentUnits="objectBoundingBox" width="1"
-                                                height="1">
-                                                <use xlink:href="#image0_504:10" transform="scale(0.0333333)" />
-                                            </pattern>
-                                            <image id="image0_504:10" width="30" height="30"
-                                                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAABEUlEQVRIie3UMUoDYRDF8Z8psqUpLBRrBS+gx7ATD6E5iSjeQQ/gJUzEwmChnZZaKZiQ0ljsLkhQM5/5Agr74DX7DfOfgZ1Hoz+qAl30Marcx2H1thCtY4DJN76parKqmAH9DM+6eTcArX2QE3yVAO7lBA8TwMNIw6UgeJI46My+rWCjUQL0LVIUBd8lgEO1UfBZAvg8oXamCuWNRu64nRNMmUo/wReSXLXayoDoKc9miMvqW/ZNG2VRNLla2MYudrCFTvX2intlnl/gGu/zDraGYzyLZ/UTjrD6G2AHpxgnAKc9xgmWo9BNPM4BnPYDNiLg24zQ2oNpyFdZvRKZLlGhnvvKPzXXti/Yy7hEo3+iD9EHtgdqxQnwAAAAAElFTkSuQmCC" />
-                                        </defs>
-                                    </svg>
-                                </span>
-                            </a>
-
-                            <button class="header-menu-btn" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <?php include("includes/header.php") ?>
         <!--== End Header Wrapper ==-->
 
         <main class="main-content">
@@ -160,7 +86,7 @@ session_start();
                                             <h2 class="hero-slide-title">CLEAN FRESH</h2>
                                             <p class="hero-slide-desc">Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
-                                            <a class="btn btn-border-dark" href="product.html">BUY NOW</a>
+                                            <a class="btn btn-border-dark" href="product.php">BUY NOW</a>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -185,7 +111,7 @@ session_start();
                                             <h2 class="hero-slide-title">Facial Cream</h2>
                                             <p class="hero-slide-desc">Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
-                                            <a class="btn btn-border-dark" href="product.html">BUY NOW</a>
+                                            <a class="btn btn-border-dark" href="product.php">BUY NOW</a>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -234,19 +160,19 @@ session_start();
                             $color_index++;
                         ?>
                             <div class="col-6 col-lg-4 col-lg-2 col-xl-2">
-                                <a href="<?php if( $row->id == 6){
-                                    echo "hair_care.php?id=$row->id";
-                                } elseif($row->id == 7){
-                                    echo "skin_care.php?id=$row->id";
-                                } elseif($row->id == 11){
-                                    echo "serrum.php?id=$row->id";
-                                } elseif($row->id == 8){
-                                    echo "lipstick.php?id=$row->id";
-                                } elseif($row->id == 10){
-                                    echo "blusher.php?id=$row->id";
-                                } else{
-                                    echo "face_skin.php?id=$row->id";
-                                } ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
+                                <a href="<?php if ($row->id == 6) {
+                                                echo "hair_care.php?id=$row->id";
+                                            } elseif ($row->id == 7) {
+                                                echo "skin_care.php?id=$row->id";
+                                            } elseif ($row->id == 11) {
+                                                echo "serrum.php?id=$row->id";
+                                            } elseif ($row->id == 8) {
+                                                echo "lipstick.php?id=$row->id";
+                                            } elseif ($row->id == 10) {
+                                                echo "blusher.php?id=$row->id";
+                                            } else {
+                                                echo "face_skin.php?id=$row->id";
+                                            } ?>" class="product-category-item" data-bg-color="<?= $current_bg ?>">
                                     <?php
                                     /* Note: Your database table 'categories' doesn't have an 'image' column yet.
                            I am using a placeholder. You should add an 'image' column to your table
@@ -279,172 +205,168 @@ session_start();
                     <div class="row">
                         <?php
                         $sql = "
-      SELECT 
+SELECT 
         p.id AS product_id,
         p.name AS product_title,
         p.price AS product_price,
         p.description AS product_description,
         pi.image_path
-      FROM products p
-      LEFT JOIN product_images pi 
-        ON pi.product_id = p.id AND pi.is_primary = 1
-        order by rand()        
-    ";
+    FROM products p
+    LEFT JOIN product_images pi 
+        ON pi.product_id = p.id 
+        AND pi.is_primary = 1
+    ORDER BY RAND() 
+";
 
                         $result = $db->query($sql);
 
                         while ($row = $result->fetch_assoc()):
-                            $product_id    = $row['product_id'];
-                            $product_title = $row['product_title'];
-                            $product_price = number_format($row['product_price'], 2);
+                            $product_id    = (int)$row['product_id'];
+                            $product_title = htmlspecialchars($row['product_title']);
+                            $product_price = (float)$row['product_price'];
 
-                            // 2. Updated Path: Going into admin/upload/product/
                             $img_filename  = $row['image_path'];
-                            $product_image = !empty($img_filename) ? "admin/$img_filename" : "assets/images/shop/1.webp";
-                            // echo $product_image
+                            $product_image = !empty($img_filename)
+                                ? "admin/" . htmlspecialchars($img_filename)
+                                : "assets/images/shop/1.webp";
                         ?>
-
                             <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                <div class='product-item'>
-                                    <div class='product-thumb'>
-                                        <a class='d-block' href='product-details.php?id=<?= $product_id ?>'>
-                                            <img src='<?= $product_image ?>' width='370' height='450' alt='<?= htmlspecialchars($product_title) ?>'>
+                                <div class="product-item">
+                                    <div class="product-thumb">
+                                        <a href="product-details.php?id=<?= $product_id ?>">
+                                            <img src="<?= $product_image ?>" width="370" height="450" alt="<?= $product_title ?>">
                                         </a>
-                                        <span class='flag-new'>new</span>
-                                        <div class='product-action'>
-                                            <button type='button' class='product-action-btn action-btn-quick-view' data-bs-toggle='modal' data-bs-target='#action-QuickViewModal'>
-                                                <i class='fa fa-expand'></i>
-                                            </button>
-                                            <button type='button' class='product-action-btn action-btn-cart' data-bs-toggle='modal' data-bs-target='#action-CartAddModal'>
+
+                                        <!-- ADD TO CART FORM -->
+                                        <form method="post" class="product-action">
+                                            <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                                            <input type="hidden" name="product_title" value="<?= $product_title ?>">
+                                            <input type="hidden" name="product_price" value="<?= $product_price ?>">
+                                            <input type="hidden" name="product_image" value="<?= $product_image ?>">
+
+                                            <button type="submit" name="add_to_cart" class="product-action-btn action-btn-cart">
                                                 <span>Add to cart</span>
                                             </button>
-                                            <button type='button' class='product-action-btn action-btn-wishlist' data-bs-toggle='modal' data-bs-target='#action-WishlistModal'>
-                                                <i class='fa fa-heart-o'></i>
-                                            </button>
-                                        </div>
+                                        </form>
                                     </div>
-                                    <div class='product-info'>
-                                        <div class='product-rating'>
-                                            <div class='rating'>
-                                                <i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-o'></i><i class='fa fa-star-half-o'></i>
-                                            </div>
-                                            <div class='reviews'>150 reviews</div>
-                                        </div>
-                                        <h4 class='title'><a href='product-details.php?id=<?= $product_id ?>'><?= $product_title ?></a></h4>
+
+                                    <div class="product-info">
+                                        <h4 class="title">
+                                            <a href="product-details.php?id=<?= $product_id ?>">
+                                                <?= $product_title ?>
+                                            </a>
+                                        </h4>
+
                                         <div class="prices">
-                                            <span class="price">$<?= $product_price ?></span>
-
-
-
-                                            <span class='price-old'>300.00</span>
+                                            <span class="price">$<?= number_format($product_price, 2) ?></span>
+                                            <span class="price-old">$300.00</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         <?php endwhile; ?>
                     </div>
 
 
 
 
-            <!--== Start Blog Area Wrapper ==-->
-            <section class="section-space">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="section-title text-center">
-                                <h2 class="title">Blog posts</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
-                                    luctus venenatis</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-n9">
-                        <div class="col-sm-6 col-lg-4 mb-8">
-                            <!--== Start Blog Item ==-->
-                            <div class="post-item">
-                                <a href="blog-details.html" class="thumb">
-                                    <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
-                                </a>
-                                <div class="content">
-                                    <a class="post-category" href="blog.html">beauty</a>
-                                    <h4 class="title"><a href="blog-details.html">Lorem ipsum dolor sit amet consectetur
-                                            adipiscing.</a></h4>
-                                    <ul class="meta">
-                                        <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a>
-                                        </li>
-                                        <li class="post-date">February 13, 2022</li>
-                                    </ul>
+                    <!--== Start Blog Area Wrapper ==-->
+                    <section class="section-space">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="section-title text-center">
+                                        <h2 class="title">Blog posts</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
+                                            luctus venenatis</p>
+                                    </div>
                                 </div>
                             </div>
-                            <!--== End Blog Item ==-->
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-8">
-                            <!--== Start Blog Item ==-->
-                            <div class="post-item">
-                                <a href="blog-details.html" class="thumb">
-                                    <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
-                                </a>
-                                <div class="content">
-                                    <a class="post-category post-category-two" data-bg-color="#A49CFF"
-                                        href="blog.html">beauty</a>
-                                    <h4 class="title"><a href="blog-details.html">Facial Scrub is natural treatment for
-                                            face.</a></h4>
-                                    <ul class="meta">
-                                        <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a>
-                                        </li>
-                                        <li class="post-date">February 13, 2022</li>
-                                    </ul>
+                            <div class="row mb-n9">
+                                <div class="col-sm-6 col-lg-4 mb-8">
+                                    <!--== Start Blog Item ==-->
+                                    <div class="post-item">
+                                        <a href="blog-details.php" class="thumb">
+                                            <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                                        </a>
+                                        <div class="content">
+                                            <a class="post-category" href="blog.php">beauty</a>
+                                            <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur
+                                                    adipiscing.</a></h4>
+                                            <ul class="meta">
+                                                <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a>
+                                                </li>
+                                                <li class="post-date">February 13, 2022</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--== End Blog Item ==-->
+                                </div>
+                                <div class="col-sm-6 col-lg-4 mb-8">
+                                    <!--== Start Blog Item ==-->
+                                    <div class="post-item">
+                                        <a href="blog-details.php" class="thumb">
+                                            <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
+                                        </a>
+                                        <div class="content">
+                                            <a class="post-category post-category-two" data-bg-color="#A49CFF"
+                                                href="blog.php">beauty</a>
+                                            <h4 class="title"><a href="blog-details.php">Facial Scrub is natural treatment for
+                                                    face.</a></h4>
+                                            <ul class="meta">
+                                                <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a>
+                                                </li>
+                                                <li class="post-date">February 13, 2022</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--== End Blog Item ==-->
+                                </div>
+                                <div class="col-sm-6 col-lg-4 mb-8">
+                                    <!--== Start Blog Item ==-->
+                                    <div class="post-item">
+                                        <a href="blog-details.php" class="thumb">
+                                            <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
+                                        </a>
+                                        <div class="content">
+                                            <a class="post-category post-category-three" data-bg-color="#9CDBFF"
+                                                href="blog.php">beauty</a>
+                                            <h4 class="title"><a href="blog-details.php">Benefit of Hot Ston Spa for your
+                                                    health & life.</a></h4>
+                                            <ul class="meta">
+                                                <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a>
+                                                </li>
+                                                <li class="post-date">February 13, 2022</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--== End Blog Item ==-->
                                 </div>
                             </div>
-                            <!--== End Blog Item ==-->
                         </div>
-                        <div class="col-sm-6 col-lg-4 mb-8">
-                            <!--== Start Blog Item ==-->
-                            <div class="post-item">
-                                <a href="blog-details.html" class="thumb">
-                                    <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
-                                </a>
-                                <div class="content">
-                                    <a class="post-category post-category-three" data-bg-color="#9CDBFF"
-                                        href="blog.html">beauty</a>
-                                    <h4 class="title"><a href="blog-details.html">Benefit of Hot Ston Spa for your
-                                            health & life.</a></h4>
-                                    <ul class="meta">
-                                        <li class="author-info"><span>By:</span> <a href="blog.html">Tomas De Momen</a>
-                                        </li>
-                                        <li class="post-date">February 13, 2022</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!--== End Blog Item ==-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--== End Blog Area Wrapper ==-->
+                    </section>
+                    <!--== End Blog Area Wrapper ==-->
 
-            <!--== Start News Letter Area Wrapper ==-->
-            <section class="section-space pt-0">
-                <div class="container">
-                    <div class="newsletter-content-wrap" data-bg-img="assets/images/photos/bg1.webp">
-                        <div class="newsletter-content">
-                            <div class="section-title mb-0">
-                                <h2 class="title">Join with us</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.</p>
+                    <!--== Start News Letter Area Wrapper ==-->
+                    <section class="section-space pt-0">
+                        <div class="container">
+                            <div class="newsletter-content-wrap" data-bg-img="assets/images/photos/bg1.webp">
+                                <div class="newsletter-content">
+                                    <div class="section-title mb-0">
+                                        <h2 class="title">Join with us</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.</p>
+                                    </div>
+                                </div>
+                                <div class="newsletter-form">
+                                    <form>
+                                        <input type="email" class="form-control" placeholder="enter your email">
+                                        <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <div class="newsletter-form">
-                            <form>
-                                <input type="email" class="form-control" placeholder="enter your email">
-                                <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--== End News Letter Area Wrapper ==-->
+                    </section>
+                    <!--== End News Letter Area Wrapper ==-->
 
         </main>
 
@@ -457,7 +379,7 @@ session_start();
                         <div class="col-md-6 col-lg-4">
                             <div class="widget-item">
                                 <div class="widget-about">
-                                    <a class="widget-logo" href="index.html">
+                                    <a class="widget-logo" href="index.php">
                                         <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
                                     </a>
                                     <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -469,14 +391,14 @@ session_start();
                             <div class="widget-item">
                                 <h4 class="widget-title">Information</h4>
                                 <ul class="widget-nav">
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="about-us.html">About us</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="faq.html">Privacy</a></li>
-                                    <li><a href="account-login.html">Login</a></li>
-                                    <li><a href="product.html">Shop</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
+                                    <li><a href="blog.php">Blog</a></li>
+                                    <li><a href="about_us.php">About us</a></li>
+                                    <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="faq.php">Privacy</a></li>
+                                    <li><a href="account-login.php">Login</a></li>
+                                    <li><a href="product.php">Shop</a></li>
+                                    <li><a href="my-account.php">My Account</a></li>
+                                    <li><a href="faq.php">FAQs</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -531,7 +453,7 @@ session_start();
                                     <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
                                         height="320">
                                 </div>
-                                <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                                <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
                         </div>
                     </div>
@@ -557,7 +479,7 @@ session_start();
                                     <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
                                         height="320">
                                 </div>
-                                <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                                <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
                         </div>
                     </div>
@@ -665,104 +587,227 @@ session_start();
                         class="fa fa-chevron-right"></i></button>
             </div>
             <div class="offcanvas-body">
+
                 <ul class="aside-cart-product-list">
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
-                            <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Leather Mens Slipper</span>
-                        </a>
-                        <span class="product-price">1 × £69.99</span>
+
+                    <?php if (!empty($_SESSION['cart'])): ?>
+                        <?php $subtotal = 0; ?>
+
+                        <?php foreach ($_SESSION['cart'] as $item): ?>
+                            <?php
+                            $item_total = $item['price'] * $item['qty'];
+                            $subtotal  += $item_total;
+                            ?>
+                            <li class="aside-product-list-item">
+                                <!-- REMOVE ITEM -->
+                                <a href="remove-cart.php?id=<?= (int)$item['id'] ?>"
+                                    class="remove"
+                                    title="Remove item">×</a>
+
+                                <!-- PRODUCT LINK -->
+                                <a href="product-details.php?id=<?= (int)$item['id'] ?>">
+                                    <img src="<?= htmlspecialchars($item['image']) ?>"
+                                        width="68"
+                                        height="84"
+                                        alt="<?= htmlspecialchars($item['title']) ?>">
+                                    <span class="product-title">
+                                        <?= htmlspecialchars($item['title']) ?>
+                                    </span>
+                                </a>
+
+                                <!-- PRICE -->
+                                <span class="product-price">
+                                    <?= (int)$item['qty'] ?> × $
+                                    <?= number_format($item['price'], 2) ?>
+                                </span>
+                            </li>
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
+                        <li class="aside-product-list-item">
+                            <p style="text-align:center;">Your cart is empty</p>
+                        </li>
+                    <?php endif; ?>
+
+                </ul>
+
+                <!-- SUBTOTAL -->
+                <p class="cart-total">
+                    <span>Subtotal:</span>
+                    <span class="amount">
+                        $<?= number_format($subtotal ?? 0, 2) ?>
+                    </span>
+                </p>
+
+                <!-- ACTION BUTTONS -->
+                <a class="btn-total" href="product-cart.php">View cart</a>
+                <a class="btn-total" href="product-checkout.php">Checkout</a>
+
+            </div>
+        </aside>
+
+        <!-- SUBTOTAL -->
+        <p class="cart-total">
+            <span>Subtotal:</span>
+            <span class="amount">
+                $<?= number_format($subtotal ?? 0, 2) ?>
+            </span>
+        </p>
+
+        <!-- ACTION BUTTONS -->
+        <a class="btn-total" href="product-cart.php">View cart</a>
+        <a class="btn-total" href="product-checkout.php">Checkout</a>
+
+    </div>
+    </aside>
+    <!--== End Aside Cart ==-->
+
+    <!--== Start Aside Menu ==-->
+    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
+            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i class="fa fa-chevron-left"></i></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="offcanvasNav" class="offcanvas-menu-nav">
+                <ul>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
+                        <ul>
+                            <li><a href="index.php">Home One</a></li>
+                            <li><a href="index-two.php">Home Two</a></li>
+                        </ul>
                     </li>
-                    <li class="aside-product-list-item">
-                        <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
-                            <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
-                            <span class="product-title">Quickiin Mens shoes</span>
-                        </a>
-                        <span class="product-price">1 × £20.00</span>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a></li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
+                        <ul>
+                            <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
+                                <ul>
+                                    <li><a href="product.php">Shop 3 Column</a></li>
+                                    <li><a href="product-four-columns.php">Shop 4 Column</a></li>
+                                    <li><a href="product-left-sidebar.php">Shop Left Sidebar</a></li>
+                                    <li><a href="product-right-sidebar.php">Shop Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">Single Product</a>
+                                <ul>
+                                    <li><a href="product-details-normal.php">Single Product Normal</a></li>
+                                    <li><a href="product-details.php">Single Product Variable</a></li>
+                                    <li><a href="product-details-group.php">Single Product Group</a></li>
+                                    <li><a href="product-details-affiliate.php">Single Product Affiliate</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
+                                <ul>
+                                    <li><a href="product-cart.php">Shopping Cart</a></li>
+                                    <li><a href="product-checkout.php">Checkout</a></li>
+                                    <li><a href="product-wishlist.php">Wishlist</a></li>
+                                    <li><a href="product-compare.php">Compare</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a>
+                        <ul>
+                            <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
+                                <ul>
+                                    <li><a href="blog.php">Blog Grid</a></li>
+                                    <li><a href="blog-left-sidebar.php">Blog Left Sidebar</a></li>
+                                    <li><a href="blog-right-sidebar.php">Blog Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-details.php">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
+                        <ul>
+                            <li><a href="account-login.php">My Account</a></li>
+                            <li><a href="faq.php">Frequently Questions</a></li>
+                            <li><a href="page-not-found.php">Page Not Found</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <!--== End Aside Menu ==-->
+
+    </div>
+    <!--== End Aside Cart ==-->
+
+    <!--== Start Aside Menu ==-->
+    <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
+            <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i
+                    class="fa fa-chevron-left"></i></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="offcanvasNav" class="offcanvas-menu-nav">
+                <ul>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
+                        <ul>
+                            <li><a href="index.php">Home One</a></li>
+                            <li><a href="index-two.php">Home Two</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
+                        <ul>
+                            <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
+                                <ul>
+                                    <li><a href="product.php">Shop 3 Column</a></li>
+                                    <li><a href="product-four-columns.php">Shop 4 Column</a></li>
+                                    <li><a href="product-left-sidebar.php">Shop Left Sidebar</a></li>
+                                    <li><a href="product-right-sidebar.php">Shop Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">Single Product</a>
+                                <ul>
+                                    <li><a href="product-details-normal.php">Single Product Normal</a></li>
+                                    <li><a href="product-details.php">Single Product Variable</a></li>
+                                    <li><a href="product-details-group.php">Single Product Group</a></li>
+                                    <li><a href="product-details-affiliate.php">Single Product Affiliate</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
+                                <ul>
+                                    <li><a href="product-cart.php">Shopping Cart</a></li>
+                                    <li><a href="product-checkout.php">Checkout</a></li>
+                                    <li><a href="product-wishlist.php">Wishlist</a></li>
+                                    <li><a href="product-compare.php">Compare</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a>
+                        <ul>
+                            <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
+                                <ul>
+                                    <li><a href="blog.php">Blog Grid</a></li>
+                                    <li><a href="blog-left-sidebar.php">Blog Left Sidebar</a></li>
+                                    <li><a href="blog-right-sidebar.php">Blog Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-details.php">Blog Details</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
+                        <ul>
+                            <li><a href="account-login.php">My Account</a></li>
+                            <li><a href="faq.php">Frequently Questions</a></li>
+                            <li><a href="page-not-found.php">Page Not Found</a></li>
+                        </ul>
+                    </li>
+                    <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a>
                     </li>
                 </ul>
-                <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
-                <a class="btn-total" href="product-cart.html">View cart</a>
-                <a class="btn-total" href="product-checkout.html">Checkout</a>
             </div>
-        </aside>
-        <!--== End Aside Cart ==-->
-
-        <!--== Start Aside Menu ==-->
-        <aside class="off-canvas-wrapper offcanvas offcanvas-start" tabindex="-1" id="AsideOffcanvasMenu"
-            aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h1 class="d-none" id="offcanvasExampleLabel">Aside Menu</h1>
-                <button class="btn-menu-close" data-bs-dismiss="offcanvas" aria-label="Close">menu <i
-                        class="fa fa-chevron-left"></i></button>
-            </div>
-            <div class="offcanvas-body">
-                <div id="offcanvasNav" class="offcanvas-menu-nav">
-                    <ul>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
-                            <ul>
-                                <li><a href="index.html">Home One</a></li>
-                                <li><a href="index-two.html">Home Two</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.html">about</a>
-                        </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
-                            <ul>
-                                <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
-                                    <ul>
-                                        <li><a href="product.html">Shop 3 Column</a></li>
-                                        <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                        <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="offcanvas-nav-item">Single Product</a>
-                                    <ul>
-                                        <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                        <li><a href="product-details.html">Single Product Variable</a></li>
-                                        <li><a href="product-details-group.html">Single Product Group</a></li>
-                                        <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
-                                    <ul>
-                                        <li><a href="product-cart.html">Shopping Cart</a></li>
-                                        <li><a href="product-checkout.html">Checkout</a></li>
-                                        <li><a href="product-wishlist.html">Wishlist</a></li>
-                                        <li><a href="product-compare.html">Compare</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Blog</a>
-                            <ul>
-                                <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
-                                    <ul>
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
-                            <ul>
-                                <li><a href="account-login.html">My Account</a></li>
-                                <li><a href="faq.html">Frequently Questions</a></li>
-                                <li><a href="page-not-found.html">Page Not Found</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-        <!--== End Aside Menu ==-->
+        </div>
+    </aside>
+    <!--== End Aside Menu ==-->
 
     </div>
     <!--== Wrapper End ==-->

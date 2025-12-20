@@ -3,7 +3,7 @@
                 <div class="row align-items-center">
                     <div class="col-5 col-lg-2 col-xl-1">
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="index.php">
                                 <img class="logo-main" src="assets/images/logo.webp" width="95" height="68"
                                     alt="Logo" />
                             </a>
@@ -12,18 +12,18 @@
                     <div class="col-lg-7 col-xl-7 d-none d-lg-block">
                         <div class="header-navigation ps-7">
                             <ul class="main-nav justify-content-start">
-                                <li class="has-submenu"><a href="index.html">home</a></li>
-                                <li><a href="about-us.html">about</a></li>
-                                <li class="has-submenu position-static"><a href="product.html">shop</a></li>
-                                <li class="has-submenu"><a href="blog.html">Blog</a></li>
-                                <li class="has-submenu"><a href="account-login.html">Pages</a>
+                                <li class="has-submenu"><a href="index.php">home</a></li>
+                                <li><a href="about_us.php">about</a></li>
+                                <li class="has-submenu position-static"><a href="product.php">shop</a></li>
+                                <li class="has-submenu"><a href="blog.php">Blog</a></li>
+                                <li class="has-submenu"><a href="account-login.php">Pages</a>
                                     <ul class="submenu-nav">
-                                        <li><a href="account-login.html">My Account</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.html">Page Not Found</a></li>
+                                        <li><a href="account-login.php">My Account</a></li>
+                                        <li><a href="faq.php">Frequently Questions</a></li>
+                                        <li><a href="page-not-found.php">Page Not Found</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                 </span>
                             </button>
 
-                            <a class="header-action-btn" href="account-login.html">
+                            <a class="header-action-btn" href="account-login.php">
                                 <span class="icon">
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

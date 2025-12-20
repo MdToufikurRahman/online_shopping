@@ -52,7 +52,7 @@ $id = $_REQUEST['id'];
                 <div class="row align-items-center">
                     <div class="col-5 col-lg-2 col-xl-1">
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="index.php">
                                 <img class="logo-main" src="assets/images/logo.webp" width="95" height="68"
                                     alt="Logo" />
                             </a>
@@ -61,18 +61,18 @@ $id = $_REQUEST['id'];
                     <div class="col-lg-7 col-xl-7 d-none d-lg-block">
                         <div class="header-navigation ps-7">
                             <ul class="main-nav justify-content-start">
-                                <li class="has-submenu"><a href="index.html">home</a></li>
-                                <li><a href="about-us.html">about</a></li>
-                                <li class="has-submenu position-static"><a href="product.html">shop</a></li>
-                                <li class="has-submenu"><a href="blog.html">Blog</a></li>
-                                <li class="has-submenu"><a href="account-login.html">Pages</a>
+                                <li class="has-submenu"><a href="index.php">home</a></li>
+                                <li><a href="about_us.php">about</a></li>
+                                <li class="has-submenu position-static"><a href="product.php">shop</a></li>
+                                <li class="has-submenu"><a href="blog.php">Blog</a></li>
+                                <li class="has-submenu"><a href="account-login.php">Pages</a>
                                     <ul class="submenu-nav">
-                                        <li><a href="account-login.html">My Account</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.html">Page Not Found</a></li>
+                                        <li><a href="account-login.php">My Account</a></li>
+                                        <li><a href="faq.php">Frequently Questions</a></li>
+                                        <li><a href="page-not-found.php">Page Not Found</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +114,7 @@ $id = $_REQUEST['id'];
                                 </span>
                             </button>
 
-                            <a class="header-action-btn" href="account-login.html">
+                            <a class="header-action-btn" href="account-login.php">
                                 <span class="icon">
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -284,7 +284,7 @@ $id = $_REQUEST['id'];
                         <div class="col-md-6 col-lg-4">
                             <div class="widget-item">
                                 <div class="widget-about">
-                                    <a class="widget-logo" href="index.html">
+                                    <a class="widget-logo" href="index.php">
                                         <img src="assets/images/logo.webp" width="95" height="68" alt="Logo">
                                     </a>
                                     <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -296,14 +296,14 @@ $id = $_REQUEST['id'];
                             <div class="widget-item">
                                 <h4 class="widget-title">Information</h4>
                                 <ul class="widget-nav">
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="about-us.html">About us</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="faq.html">Privacy</a></li>
-                                    <li><a href="account-login.html">Login</a></li>
-                                    <li><a href="product.html">Shop</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="faq.html">FAQs</a></li>
+                                    <li><a href="blog.php">Blog</a></li>
+                                    <li><a href="about_us.php">About us</a></li>
+                                    <li><a href="contact.php">Contact</a></li>
+                                    <li><a href="faq.php">Privacy</a></li>
+                                    <li><a href="account-login.php">Login</a></li>
+                                    <li><a href="product.php">Shop</a></li>
+                                    <li><a href="my-account.php">My Account</a></li>
+                                    <li><a href="faq.php">FAQs</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -358,7 +358,7 @@ $id = $_REQUEST['id'];
                                     <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
                                         height="320">
                                 </div>
-                                <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                                <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
                         </div>
                     </div>
@@ -384,7 +384,7 @@ $id = $_REQUEST['id'];
                                     <img src="assets/images/shop/modal1.webp" alt="Organic Food Juice" width="466"
                                         height="320">
                                 </div>
-                                <h4 class="product-name"><a href="product-details.html">Readable content DX22</a></h4>
+                                <h4 class="product-name"><a href="product-details.php">Readable content DX22</a></h4>
                             </div>
                         </div>
                     </div>
@@ -495,7 +495,7 @@ $id = $_REQUEST['id'];
                 <ul class="aside-cart-product-list">
                     <li class="aside-product-list-item">
                         <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
+                        <a href="product-details.php">
                             <img src="assets/images/shop/cart1.webp" width="68" height="84" alt="Image">
                             <span class="product-title">Leather Mens Slipper</span>
                         </a>
@@ -503,7 +503,7 @@ $id = $_REQUEST['id'];
                     </li>
                     <li class="aside-product-list-item">
                         <a href="#/" class="remove">×</a>
-                        <a href="product-details.html">
+                        <a href="product-details.php">
                             <img src="assets/images/shop/cart2.webp" width="68" height="84" alt="Image">
                             <span class="product-title">Quickiin Mens shoes</span>
                         </a>
@@ -511,8 +511,8 @@ $id = $_REQUEST['id'];
                     </li>
                 </ul>
                 <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
-                <a class="btn-total" href="product-cart.html">View cart</a>
-                <a class="btn-total" href="product-checkout.html">Checkout</a>
+                <a class="btn-total" href="product-cart.php">View cart</a>
+                <a class="btn-total" href="product-checkout.php">Checkout</a>
             </div>
         </aside>
         <!--== End Aside Cart ==-->
@@ -530,36 +530,36 @@ $id = $_REQUEST['id'];
                     <ul>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
                             <ul>
-                                <li><a href="index.html">Home One</a></li>
-                                <li><a href="index-two.html">Home Two</a></li>
+                                <li><a href="index.php">Home One</a></li>
+                                <li><a href="index-two.php">Home Two</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.html">about</a>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a>
                         </li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
                             <ul>
                                 <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>
                                     <ul>
-                                        <li><a href="product.html">Shop 3 Column</a></li>
-                                        <li><a href="product-four-columns.html">Shop 4 Column</a></li>
-                                        <li><a href="product-left-sidebar.html">Shop Left Sidebar</a></li>
-                                        <li><a href="product-right-sidebar.html">Shop Right Sidebar</a></li>
+                                        <li><a href="product.php">Shop 3 Column</a></li>
+                                        <li><a href="product-four-columns.php">Shop 4 Column</a></li>
+                                        <li><a href="product-left-sidebar.php">Shop Left Sidebar</a></li>
+                                        <li><a href="product-right-sidebar.php">Shop Right Sidebar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#" class="offcanvas-nav-item">Single Product</a>
                                     <ul>
-                                        <li><a href="product-details-normal.html">Single Product Normal</a></li>
-                                        <li><a href="product-details.html">Single Product Variable</a></li>
-                                        <li><a href="product-details-group.html">Single Product Group</a></li>
-                                        <li><a href="product-details-affiliate.html">Single Product Affiliate</a></li>
+                                        <li><a href="product-details-normal.php">Single Product Normal</a></li>
+                                        <li><a href="product-details.php">Single Product Variable</a></li>
+                                        <li><a href="product-details-group.php">Single Product Group</a></li>
+                                        <li><a href="product-details-affiliate.php">Single Product Affiliate</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#" class="offcanvas-nav-item">Others Pages</a>
                                     <ul>
-                                        <li><a href="product-cart.html">Shopping Cart</a></li>
-                                        <li><a href="product-checkout.html">Checkout</a></li>
-                                        <li><a href="product-wishlist.html">Wishlist</a></li>
-                                        <li><a href="product-compare.html">Compare</a></li>
+                                        <li><a href="product-cart.php">Shopping Cart</a></li>
+                                        <li><a href="product-checkout.php">Checkout</a></li>
+                                        <li><a href="product-wishlist.php">Wishlist</a></li>
+                                        <li><a href="product-compare.php">Compare</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -568,22 +568,22 @@ $id = $_REQUEST['id'];
                             <ul>
                                 <li><a class="offcanvas-nav-item" href="#">Blog Layout</a>
                                     <ul>
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                        <li><a href="blog.php">Blog Grid</a></li>
+                                        <li><a href="blog-left-sidebar.php">Blog Left Sidebar</a></li>
+                                        <li><a href="blog-right-sidebar.php">Blog Right Sidebar</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
+                                <li><a href="blog-details.php">Blog Details</a></li>
                             </ul>
                         </li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
                             <ul>
-                                <li><a href="account-login.html">My Account</a></li>
-                                <li><a href="faq.html">Frequently Questions</a></li>
-                                <li><a href="page-not-found.html">Page Not Found</a></li>
+                                <li><a href="account-login.php">My Account</a></li>
+                                <li><a href="faq.php">Frequently Questions</a></li>
+                                <li><a href="page-not-found.php">Page Not Found</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.html">Contact</a>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a>
                         </li>
                     </ul>
                 </div>
