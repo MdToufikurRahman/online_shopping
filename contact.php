@@ -55,16 +55,20 @@
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
                                 <li class="has-submenu"><a href="index.php">home</a>
-                                   
+                                    <ul class="submenu-nav">
+                                        <li><a href="index.php">Home One</a></li>
+                                        <li><a href="index-two.php">Home Two</a></li>
+                                    </ul>
                                 </li>
-                                <li><a href="about_us.php">about</a></li>
+                                <li><a href="about-us.php">about</a></li>
                                 <li class="has-submenu position-static"><a href="product.php">shop</a>
                                     
+                                    </ul>
                                 </li>
                                 <li class="has-submenu"><a href="blog.php">Blog</a>
-                                    
+                                   
                                 </li>
-                               
+                                
                                 <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
@@ -126,76 +130,86 @@
         <!--== End Header Wrapper ==-->
 
         <main class="main-content">
-            <!--== Start Page Header Area Wrapper ==-->
-            <section class="page-header-area">
+
+            <!--== Start Contact Area Wrapper ==-->
+            <section class="contact-area">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-7 col-lg-7 col-xl-5">
-                            <div class="page-header-content">
-                                <div class="title-img"><img src="assets/images/photos/about-title.webp" alt="Image"></div>
-                                <h2 class="page-header-title">We, are Brancy</h2>
-                                <h4 class="page-header-sub-title">Best cosmetics provider</h4>
-                                <p class="page-header-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
+                    <div class="row">
+                        <div class="offset-lg-6 col-lg-6">
+                            <div class="section-title position-relative">
+                                <h2 class="title">Get in touch</h2>
+                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing aliquam, purus sit amet luctus venenatis</p>
+                                <div class="line-left-style mt-4 mb-1"></div>
                             </div>
+                            <!--== Start Contact Form ==-->
+                            <div class="contact-form">
+                                <form id="contact-form" action="https://whizthemes.com/mail-php/raju/arden/mail.php" method="POST">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="con_name" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" name="con_email" placeholder="Email address">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="con_message" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group mb-0">
+                                                <button class="btn btn-sm" type="submit">SUBMIT</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--== End Contact Form ==-->
+
+                            <!--== Message Notification ==-->
+                            <div class="form-message"></div>
                         </div>
-                        <div class="col-md-5 col-lg-5 col-xl-7">
-                            <div class="page-header-thumb">
-                                <img src="assets/images/about1.webp" width="570" height="669" alt="Image">
-                            </div>
+                    </div>
+                </div>
+                <div class="contact-left-img" data-bg-img="assets/images/photos/contact.webp"></div>
+            </section>
+            <!--== End Contact Area Wrapper ==-->
+
+            <!--== Start Contact Area Wrapper ==-->
+            <section class="section-space">
+                <div class="container">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <img class="icon" src="assets/images/icons/1.webp" width="30" height="30" alt="Icon">
+                            <a href="tel://+11020303023">+11 0203 03023</a>
+                            <a href="tel://+11020303023">+11 0203 03023</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <img class="icon" src="assets/images/icons/2.webp" width="30" height="30" alt="Icon">
+                            <a href="mailto://example@demo.com">example@demo.com</a>
+                            <a href="mailto://demo@example.com">demo@example.com</a>
+                        </div>
+                        <div class="contact-info-item mb-0">
+                            <img class="icon" src="assets/images/icons/3.webp" width="30" height="30" alt="Icon">
+                            <p>Sunset Beach, North Carolina(NC), 28468</p>
                         </div>
                     </div>
                 </div>
             </section>
-            <!--== End Page Header Area Wrapper ==-->
+            <!--== End Contact Area Wrapper ==-->
 
-     
-
-            <!--== Start About Area Wrapper ==-->
-            <section class="section-space pt-0 mb-n1">
-                <div class="container">
-                    <div class="about-thumb">
-                        <!-- <img src="assets/images/photos/about2.webp" alt="Image"> -->
-                    </div>
-                    <div class="about-content">
-                        <h2 class="title">Best Cosmetics Provider</h2>
-                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel arcu aliquet sem risus nisl. Neque, scelerisque in erat lacus ridiculus habitant porttitor. Malesuada pulvinar sollicitudin enim, quis sapien tellus est. Pellentesque amet vel maecenas nisi. In elementum magna nulla ridiculus sapien mollis volutpat sit. Arcu egestas massa consectetur felis urna porttitor ac.</p>
-                    </div>
-                </div>
-            </section>
-            <!--== End About Area Wrapper ==-->
-
-            <!--== Start Feature Area Wrapper ==-->
-            <div class="feature-area section-space">
-                <div class="container">
-                    <div class="row mb-n9">
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature1.webp" width="60" height="60" alt="Icon"> Support Team</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
-                            </div>
-                            <!--== End Feature Item ==-->
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature2.webp" width="60" height="60" alt="Icon"> Certification</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
-                            </div>
-                            <!--== End Feature Item ==-->
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature3.webp" width="60" height="60" alt="Icon"> Natural Products</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
-                            </div>
-                            <!--== End Feature Item ==-->
-                        </div>
-                    </div>
-                </div>
+            <div class="map-area">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d802879.9165497769!2d144.83475730949783!3d-38.180874157285366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sbd!4v1636803638401!5m2!1sen!2sbd"></iframe>
             </div>
-            <!--== End Feature Area Wrapper ==-->
 
         </main>
 
@@ -220,7 +234,7 @@
                                 <h4 class="widget-title">Information</h4>
                                 <ul class="widget-nav">
                                     <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="about_us.php">About us</a></li>
+                                    <li><a href="about-us.php">About us</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                     <li><a href="faq.php">Privacy</a></li>
                                     <li><a href="account-login.php">Login</a></li>
@@ -434,12 +448,9 @@
                 <div id="offcanvasNav" class="offcanvas-menu-nav">
                     <ul>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">home</a>
-                            <ul>
-                                <li><a href="index.php">Home One</a></li>
-                                <li><a href="index-two.php">Home Two</a></li>
-                            </ul>
+                          
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a></li>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.php">about</a></li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
                             <ul>
                                 <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>

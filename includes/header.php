@@ -16,13 +16,7 @@
                                 <li><a href="about_us.php">about</a></li>
                                 <li class="has-submenu position-static"><a href="product.php">shop</a></li>
                                 <li class="has-submenu"><a href="blog.php">Blog</a></li>
-                                <li class="has-submenu"><a href="account-login.php">Pages</a>
-                                    <ul class="submenu-nav">
-                                        <li><a href="account-login.php">My Account</a></li>
-                                        <li><a href="faq.php">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.php">Page Not Found</a></li>
-                                    </ul>
-                                </li>
+                                
                                 <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>

@@ -286,7 +286,7 @@ if (!isset($_SESSION['cart'])) {
                                     </tbody>
                                 </table>
                                 <div class="text-end">
-                                    <a href="shop-checkout.php" class="checkout-button">Proceed to checkout</a>
+                                    <a href="product-checkout.php" class="checkout-button">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>

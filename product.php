@@ -89,12 +89,7 @@ if (isset($_POST['add_to_cart'])) {
                                 <li class="has-submenu"><a href="blog.php">Blog</a>
 
                                 </li>
-                                <li class="has-submenu"><a href="account-login.php">Pages</a>
-                                    <ul class="submenu-nav">
-                                        <li><a href="account-login.php">My Account</a></li>
-                                        <li><a href="faq.php">Frequently Questions</a></li>
-                                        <li><a href="page-not-found.php">Page Not Found</a></li>
-                                    </ul>
+                                
                                 </li>
                                 <li><a href="contact.php">Contact</a></li>
                             </ul>
@@ -232,7 +227,7 @@ if (isset($_POST['add_to_cart'])) {
                     <div class="row">
                         <div class="col-12">
                             <div class="section-title text-center">
-                                <h2 class="title">Top sale</h2>
+                                <h2 class="title">All Products</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet
                                     luctus venenatis</p>
                             </div>
@@ -627,13 +622,7 @@ SELECT
                                 <li><a href="blog-details.php">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">Pages</a>
-                            <ul>
-                                <li><a href="account-login.php">My Account</a></li>
-                                <li><a href="faq.php">Frequently Questions</a></li>
-                                <li><a href="page-not-found.php">Page Not Found</a></li>
-                            </ul>
-                        </li>
+                        
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="contact.php">Contact</a></li>
                     </ul>
                 </div>

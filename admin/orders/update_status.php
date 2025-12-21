@@ -48,7 +48,7 @@ $shipment = $db->query("SELECT * FROM shipments WHERE order_id=$order_id")->fetc
         <?php endforeach; ?>
     </select><br><br>
 
-    <h3>Shipment</h3>
+    <!-- <h3>Shipment</h3>
     <label>Carrier</label>
     <input type="text" name="carrier" value="<?= $shipment['carrier'] ?>"><br>
     <label>Tracking Number</label>
@@ -60,7 +60,7 @@ $shipment = $db->query("SELECT * FROM shipments WHERE order_id=$order_id")->fetc
         <?php foreach(['processing','shipped','delivered','cancelled'] as $status): ?>
             <option value="<?= $status ?>" <?= $shipment['status']==$status?'selected':'' ?>><?= ucfirst($status) ?></option>
         <?php endforeach; ?>
-    </select><br><br>
+    </select><br><br> -->
 
     <input type="submit" value="Update">
 </form>

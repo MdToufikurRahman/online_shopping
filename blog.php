@@ -57,14 +57,14 @@
                                 <li class="has-submenu"><a href="index.php">home</a>
                                    
                                 </li>
-                                <li><a href="about_us.php">about</a></li>
+                                <li><a href="about-us.php">about</a></li>
                                 <li class="has-submenu position-static"><a href="product.php">shop</a>
-                                    
+                                   
                                 </li>
                                 <li class="has-submenu"><a href="blog.php">Blog</a>
-                                    
+                                   
                                 </li>
-                               
+                              
                                 <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
@@ -126,21 +126,25 @@
         <!--== End Header Wrapper ==-->
 
         <main class="main-content">
+
             <!--== Start Page Header Area Wrapper ==-->
-            <section class="page-header-area">
+            <!-- <nav aria-label="breadcrumb" class="breadcrumb-style1 mb-10">
+                <div class="container">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                    </ol>
+                </div>
+            </nav> -->
+
+            <section class="page-header-area page-header-style2-area" data-bg-img="assets/images/photos/page-header1.webp">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-md-7 col-lg-7 col-xl-5">
-                            <div class="page-header-content">
-                                <div class="title-img"><img src="assets/images/photos/about-title.webp" alt="Image"></div>
-                                <h2 class="page-header-title">We, are Brancy</h2>
-                                <h4 class="page-header-sub-title">Best cosmetics provider</h4>
+                        <div class="col-md-7">
+                            <div class="page-header-content page-header-st2-content">
+                                <div class="title-img"><img src="assets/images/photos/page-header-text1.webp" alt="Image"></div>
+                                <h2 class="page-header-title">Whats the beauty secrets?</h2>
                                 <p class="page-header-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-5 col-lg-5 col-xl-7">
-                            <div class="page-header-thumb">
-                                <img src="assets/images/about1.webp" width="570" height="669" alt="Image">
                             </div>
                         </div>
                     </div>
@@ -148,54 +152,341 @@
             </section>
             <!--== End Page Header Area Wrapper ==-->
 
-     
-
-            <!--== Start About Area Wrapper ==-->
-            <section class="section-space pt-0 mb-n1">
+            <!--== Start Blog Area Wrapper ==-->
+            <section class="section-space pb-0">
                 <div class="container">
-                    <div class="about-thumb">
-                        <!-- <img src="assets/images/photos/about2.webp" alt="Image"> -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title text-center">
+                                <h2 class="title">New Posts</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="about-content">
-                        <h2 class="title">Best Cosmetics Provider</h2>
-                        <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel arcu aliquet sem risus nisl. Neque, scelerisque in erat lacus ridiculus habitant porttitor. Malesuada pulvinar sollicitudin enim, quis sapien tellus est. Pellentesque amet vel maecenas nisi. In elementum magna nulla ridiculus sapien mollis volutpat sit. Arcu egestas massa consectetur felis urna porttitor ac.</p>
+                    <div class="row mb-n9">
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/4.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-two" data-bg-color="#A49CFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Benefit of Hot Ston Spa for your health & life.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-12 col-lg-4 mb-8">
+                            <div class="row mb-n10">
+                                <div class="col-md-6  col-lg-12 mb-10">
+                                    <!--== Start Blog Item ==-->
+                                    <div class="post-item">
+                                        <div class="content">
+                                            <h4 class="title mt-0"><a href="blog-details.php">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h4>
+                                            <p class="desc">Lorem ipsum dolor sit amet, conseur adipiscing elit ut aliqua, purus sit amet luctus venenatis.</p>
+                                            <a class="btn-link" href="blog.php">Learn more</a>
+                                        </div>
+                                    </div>
+                                    <!--== End Blog Item ==-->
+                                </div>
+                                <div class="col-md-6  col-lg-12 mb-10 pt-0 pt-lg-4">
+                                    <!--== Start Blog Item ==-->
+                                    <div class="post-item">
+                                        <div class="content">
+                                            <h4 class="title mt-0"><a href="blog-details.php">Facial Scrub is natural treatment for face.</a></h4>
+                                            <p class="desc">Lorem ipsum dolor sit amet, conseur adipiscing elit ut aliqua, purus.</p>
+                                            <a class="btn-link" href="blog.php">Learn more</a>
+                                        </div>
+                                    </div>
+                                    <!--== End Blog Item ==-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <!--== End About Area Wrapper ==-->
+            <!--== End Blog Area Wrapper ==-->
 
-            <!--== Start Feature Area Wrapper ==-->
-            <div class="feature-area section-space">
+            <!--== Start Blog Area Wrapper ==-->
+            <section class="section-space">
                 <div class="container">
                     <div class="row mb-n9">
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature1.webp" width="60" height="60" alt="Icon"> Support Team</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
+                        <div class="col-sm-6 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/col6-1.webp" width="570" height="340" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <h4 class="title"><a href="blog-details.php">Facial Scrub is natural treatment for face.</a></h4>
+                                    <p class="desc">Lorem ipsum dolor sit amet, conseur adipiscing elit ut aliqua, purus sit amet luctus venenatis.</p>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <!--== End Feature Item ==-->
+                            <!--== End Blog Item ==-->
                         </div>
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature2.webp" width="60" height="60" alt="Icon"> Certification</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
+                        <div class="col-sm-6 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/col6-2.webp" width="570" height="340" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <h4 class="title"><a href="blog-details.php">Benefit of Hot Ston Spa for your health</a></h4>
+                                    <p class="desc">Lorem ipsum dolor sit amet, conseur adipiscing elit ut aliqua, purus sit amet luctus venenatis.</p>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <!--== End Feature Item ==-->
-                        </div>
-                        <div class="col-md-6 col-lg-4 mb-8">
-                            <!--== Start Feature Item ==-->
-                            <div class="feature-item">
-                                <h5 class="title"><img class="icon" src="assets/images/icons/feature3.webp" width="60" height="60" alt="Icon"> Natural Products</h5>
-                                <p class="desc">Lorem ipsum dolor amet, consectetur adipiscing. Ac tortor enim metus, turpis.</p>
-                            </div>
-                            <!--== End Feature Item ==-->
+                            <!--== End Blog Item ==-->
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--== End Feature Area Wrapper ==-->
+            </section>
+            <!--== End Blog Area Wrapper ==-->
+
+            <!--== Start Blog Area Wrapper ==-->
+            <section class="section-space pt-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title text-center">
+                                <h2 class="title">Others Posts</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-n9">
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-two" data-bg-color="#A49CFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/5.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/6.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-two" data-bg-color="#A49CFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/7.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--== End Blog Area Wrapper ==-->
+
+            <!--== Start Product Banner Area Wrapper ==-->
+            <section class="section-space pt-0">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-10 col-lg-8">
+                            <!--== Start Product Category Item ==-->
+                            <a href="product.php" class="product-banner-item">
+                                <img src="assets/images/shop/banner/8.webp" width="770" height="250" alt="Image-HasTech">
+                            </a>
+                            <!--== End Product Category Item ==-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--== End Product Banner Area Wrapper ==-->
+
+            <!--== Start Blog Area Wrapper ==-->
+            <section class="section-space pt-0">
+                <div class="container">
+                    <div class="row mb-n9">
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-two" data-bg-color="#A49CFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-8">
+                            <!--== Start Blog Item ==-->
+                            <div class="post-item">
+                                <a href="blog-details.php" class="thumb">
+                                    <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
+                                </a>
+                                <div class="content">
+                                    <a class="post-category post-category-three" data-bg-color="#9CDBFF" href="blog.php">beauty</a>
+                                    <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor sit amet consectetur adipiscing.</a></h4>
+                                    <ul class="meta">
+                                        <li class="author-info"><span>By:</span> <a href="blog.php">Tomas De Momen</a></li>
+                                        <li class="post-date">February 13, 2022</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--== End Blog Item ==-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--== End Blog Area Wrapper ==-->
+
+            <!--== Start News Letter Area Wrapper ==-->
+            <section class="section-space pt-0">
+                <div class="container">
+                    <div class="newsletter-content-wrap" data-bg-img="assets/images/photos/bg1.webp">
+                        <div class="newsletter-content">
+                            <div class="section-title mb-0">
+                                <h2 class="title">Join with us</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam.</p>
+                            </div>
+                        </div>
+                        <div class="newsletter-form">
+                            <form>
+                                <input type="email" class="form-control" placeholder="enter your email">
+                                <button class="btn-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--== End News Letter Area Wrapper ==-->
 
         </main>
 
@@ -220,7 +511,7 @@
                                 <h4 class="widget-title">Information</h4>
                                 <ul class="widget-nav">
                                     <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="about_us.php">About us</a></li>
+                                    <li><a href="about-us.php">About us</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                     <li><a href="faq.php">Privacy</a></li>
                                     <li><a href="account-login.php">Login</a></li>
@@ -439,7 +730,7 @@
                                 <li><a href="index-two.php">Home Two</a></li>
                             </ul>
                         </li>
-                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about_us.php">about</a></li>
+                        <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="about-us.php">about</a></li>
                         <li class="offcanvas-nav-parent"><a class="offcanvas-nav-item" href="#">shop</a>
                             <ul>
                                 <li><a href="#" class="offcanvas-nav-item">Shop Layout</a>

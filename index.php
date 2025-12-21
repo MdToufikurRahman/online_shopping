@@ -287,7 +287,7 @@ SELECT
                                     <!--== Start Blog Item ==-->
                                     <div class="post-item">
                                         <a href="blog-details.php" class="thumb">
-                                            <img src="assets/images/blog/1.webp" width="370" height="320" alt="Image-HasTech">
+                                            <img src="assets/images/1 (1).webp" width="370" height="320" alt="Image-HasTech">
                                         </a>
                                         <div class="content">
                                             <a class="post-category" href="blog.php">beauty</a>
@@ -306,7 +306,7 @@ SELECT
                                     <!--== Start Blog Item ==-->
                                     <div class="post-item">
                                         <a href="blog-details.php" class="thumb">
-                                            <img src="assets/images/blog/2.webp" width="370" height="320" alt="Image-HasTech">
+                                            <img src="assets/images/2 (1).webp" width="370" height="320" alt="Image-HasTech">
                                         </a>
                                         <div class="content">
                                             <a class="post-category post-category-two" data-bg-color="#A49CFF"
@@ -326,7 +326,7 @@ SELECT
                                     <!--== Start Blog Item ==-->
                                     <div class="post-item">
                                         <a href="blog-details.php" class="thumb">
-                                            <img src="assets/images/blog/3.webp" width="370" height="320" alt="Image-HasTech">
+                                            <img src="assets/images/3 (1).webp" width="370" height="320" alt="Image-HasTech">
                                         </a>
                                         <div class="content">
                                             <a class="post-category post-category-three" data-bg-color="#9CDBFF"

@@ -70,10 +70,10 @@ Amount: $<?= $payment['amount'] ?><br>
 Status: <?= $payment['status'] ?><br>
 Transaction ID: <?= $payment['transaction_id'] ?></p>
 
-<h3>Shipment</h3>
+<!-- <h3>Shipment</h3>
 <p>Carrier: <?= $shipment['carrier'] ?><br>
 Tracking #: <?= $shipment['tracking_number'] ?><br>
 Shipping Fee: $<?= $shipment['shipping_fee'] ?><br>
 Status: <?= $shipment['status'] ?><br>
 Shipped At: <?= $shipment['shipped_at'] ?><br>
-Delivered At: <?= $shipment['delivered_at'] ?></p>
+Delivered At: <?= $shipment['delivered_at'] ?></p> -->
