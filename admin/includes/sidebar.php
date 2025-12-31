@@ -1,6 +1,6 @@
 <?php
 // Project root for consistent pat-hing
-define('DIR', '/online_shopping_system/Admin/');
+define('DIR', '/online_shopping_system/admin/');
 
 // Helper function to check active page
 function isActive($pagePath)

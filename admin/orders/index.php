@@ -81,7 +81,8 @@ $result = $db->query($sql);
                                                 <td><?= $row['created_at'] ?></td>
                                                 <td>
                                                     <a href="view.php?id=<?= $row['id'] ?>">View</a> |
-                                                    <a href="update_status.php?id=<?= $row['id'] ?>">Update Status</a>
+                                                    <a href="update_status.php?id=<?= $row['id'] ?>">Update Status</a> |
+                                                    <a href="invoice.php?id=<?= $row['id'] ?>" target="_blank">Invoice</a>
                                                 </td>
                                             </tr>
                                         <?php endwhile; ?>

@@ -425,7 +425,7 @@ SELECT
                 <div class="container pt-0 pb-0">
                     <div class="footer-bottom-content">
                         <p class="copyright">© 2022 Brancy. Made with <i class="fa fa-heart"></i> by <a target="_blank"
-                                href="https://themeforest.net/user/codecarnival">Codecarnival.</a></p>
+                                href="https://themeforest.net/user/codecarnival">Toufik .</a></p>
                     </div>
                 </div>
             </div>

@@ -350,7 +350,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
             <div class="footer-bottom">
                 <div class="container pt-0 pb-0">
                     <div class="footer-bottom-content">
-                        <p class="copyright">© 2025 Cosmetic Shop.</p>
+                        <p class="copyright">© Toufik.</p>
                     </div>
                 </div>
             </div>
